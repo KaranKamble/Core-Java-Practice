@@ -2,10 +2,21 @@ package test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 public class Program {
-
+	
 	public static void main(String[] args) {
+		List<Integer> list = new Vector<>();
+		list.add(23);
+		list.add(24);
+		list.add(25);
+		list.add(26);
+		
+		System.out.println(list);
+	}
+
+	public static void main2(String[] args) {
 
 		List<Integer> list = new ArrayList<Integer>(); // OK
 		list.add(11);
