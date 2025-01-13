@@ -1,8 +1,7 @@
 package test;
 
-import java.util.Comparator;
+import java.util.LinkedHashSet;
 import java.util.Scanner;
-import java.util.Vector;
 
 public class Program {
 	static Scanner sc = new Scanner(System.in);
@@ -39,85 +38,54 @@ public class Program {
 
 	}
 
-	public static void removeStatus( boolean status) {
-		if( status )
+	public static void removeStatus(boolean status) {
+		if (status)
 			System.out.println("Employee Removed Successfully");
 		else
 			System.out.println("Error Occured");
 	}
-	
+
 	public static int menuList() {
 		System.out.println("0.Exit");
 		System.out.println("1.Add Employees ");
 		System.out.println("2.Find Employee");
 		System.out.println("3.Remove Employee");
-		System.out.println("4.Sort Employees");
-		System.out.println("Enter choice : ");
-		return sc.nextInt();
-	}
-
-	public static int subMenuList() {
-		System.out.println("0.Exit ");
-		System.out.println("1.Sort By Name ");
-		System.out.println("2.Sort By Empid ");
-		System.out.println("3.Sort By Department ");
-		System.out.println("4.Sort By Job ");
-		System.out.println("5.Sort By Salary ");
+		System.out.println("4.Print Employees");
 		System.out.println("Enter choice : ");
 		return sc.nextInt();
 	}
 
 	public static void main(String[] args) {
 
-	//	ListTest list = new ListTest(new ArrayList<>());
-	//	ListTest list = new ListTest(new LinkedList<>());
-		ListTest list = new ListTest(new Vector<>());
-
-		Employee[] arr = Program.getEmployees();
+	//	SetTest set = new SetTest(new TreeSet<>(/* new SortByEmpId()*/));
+	//	SetTest set = new SetTest( new HashSet<Employee>() );
+		SetTest set = new SetTest( new LinkedHashSet<Employee>() );
 		
+		Employee[] arr = Program.getEmployees();
+
 		int[] empId = new int[1];
 		int choice = 0;
 		while ((choice = Program.menuList()) != 0) {
 			switch (choice) {
 			case 1:
-				list.addEmployee(arr);
+				set.addEmployee(arr);
 				break;
 
 			case 2:
 				Program.find(empId);
-				Employee emp = list.findEmployee(empId[0]);
+				Employee emp = set.findEmployee(empId[0]);
 				Program.printRecord(emp);
 				break;
 			case 3:
 				Program.find(empId);
-				boolean status = list.removeById( empId [ 0 ]);
+				boolean status = set.removeById(empId[0]);
 				Program.removeStatus(status);
 				break;
 			case 4:
-				
-				while( (choice = Program.subMenuList() ) != 0 ) {
-					Comparator<Employee> sort = null;
-					switch( choice ) {
-					case 1 :
-						sort = new SortByName();
-						break;
-					case 2 :
-						sort = new SortByEmpId();
-						break;
-					case 3 :
-						sort = new SortByDepartment();
-						break;
-					case 4 :
-						sort = new SortByJob();
-						break;
-					case 5 :
-						sort = new SortBySalary();
-						break;
-					}
-					list.printRecord(sort);
-				}
+				set.printRecord();
 				break;
 			}
 		}
+
 	}
 }

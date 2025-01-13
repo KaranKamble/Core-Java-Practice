@@ -37,14 +37,27 @@ public class ListTest {
 		}
 		return null;
 	}
+
+	public boolean removeById(int empId) {
+		if (this.list != null) {
+			Employee key = new Employee();
+			key.setEmpId(empId);
+			if (this.list.contains(key)) {
+				this.list.remove(key);
+				return true;
+			}
+		}
+		return false;
+	}
 	
-	public void printRecord( Comparator<Employee> emp ) {
-		if( this.list != null ) {
+
+	public void printRecord(Comparator<Employee> emp) {
+		if (this.list != null) {
 			this.list.sort(emp);
-			for( Employee element : list )
+			for (Employee element : list)
 				System.out.println(element);
 		}
-		
+
 	}
 
 }
