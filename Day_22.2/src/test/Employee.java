@@ -1,5 +1,7 @@
 package test;
 
+import java.util.Objects;
+
 public class Employee {
 
 	private int impId;
@@ -37,6 +39,25 @@ public class Employee {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+
+	
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(impId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Employee other = (Employee) obj;
+		return impId == other.impId;
 	}
 
 	@Override
